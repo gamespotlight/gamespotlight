@@ -11,9 +11,20 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-BR4KSGW5RY');
   </script>
+
+  <!-- Google Translate Widget -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en', 
+        includedLanguages: 'en,es,fr,de,it,pt,ru',  // add the languages you want
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
   <style>
     body {
@@ -59,9 +70,11 @@
       background-color: #2575fc;
       padding: 10px 20px;
       border-radius: 5px;
+      transition: background-color 0.3s ease;
     }
     .category-links a:hover {
-      background-color: #ff4b1f; }
+      background-color: #ff4b1f;
+    }
     section {
       margin-top: 30px;
       padding: 20px;
@@ -70,6 +83,7 @@
       max-width: 80%;
       margin-left: auto;
       margin-right: auto;
+      transition: transform 0.3s ease, opacity 0.3s ease;
     }
     section h2 {
       color: #ff7e5f;
@@ -79,7 +93,8 @@
       text-decoration: none;
     }
     a:hover {
-      color: #ff4b1f; }
+      color: #ff4b1f;
+    }
     #disclaimer {
       background-color: rgba(255, 0, 0, 0.7);
       color: white;
@@ -91,6 +106,61 @@
     #disclaimer a {
       color: white;
       text-decoration: underline;
+    }
+
+    /* Menu styles */
+    .menu {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 10px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .menu-content {
+      display: none;
+      margin-top: 10px;
+    }
+    .menu:hover .menu-content {
+      display: block;
+    }
+    .menu-content a {
+      display: block;
+      padding: 5px;
+      background-color: #2575fc;
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+    .menu-content a:hover {
+      background-color: #ff4b1f;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2em;
+      }
+      p {
+        font-size: 1em;
+      }
+      .category-links a {
+        font-size: 1.2em;
+        margin: 5px;
+      }
+      section {
+        width: 90%;
+      }
+    }
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.5em;
+      }
+      .category-links a {
+        font-size: 1.1em;
+      }
     }
   </style>
 </head>
@@ -129,6 +199,7 @@
       <a href="#rocketleague-section">Rocket League</a>
       <a href="#apexlegends-section">Apex Legends</a>
       <a href="#fifa25-section">FIFA FC 25</a>
+      <a href="#brawlstars-section">Brawl Stars</a> <!-- Added Brawl Stars to Supported Games -->
     </div>
   </section>
 
@@ -197,18 +268,10 @@
     <p>Discord: <a href="https://discord.gg/8RdUdcKd" target="_blank">Join our Discord Server</a></p>
   </section>
 
-  <!-- Disclaimer -->
+  <!-- Disclaimer Section -->
   <section id="disclaimer">
     <h2>Disclaimer</h2>
-    <p>This site shares gaming content for entertainment purposes only. We do not claim rights over uploaded content. If you believe your rights are being infringed, contact us.</p>
+    <p>This site shares gaming content for entertainment purposes only. We do not claim rights over uploaded content.</p>
   </section>
-
-  <!-- Google Translate Script -->
-  <script type="text/javascript">
-    function googleTranslateElementInit() {
-      new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-    }
-  </script>
-  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
