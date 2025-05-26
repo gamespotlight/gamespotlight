@@ -4,13 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gamespotlight: Share & Discover Top Gaming Clips</title>
-  <meta name="description" content="Gamespotlight is where gamers share & discover the best viral game clips. Submit your highlights, get noticed, and join a passionate gaming community!">
-  <meta name="keywords" content="gaming, video, clips, highlights, viral, games, share, discover, discord, youtube">
-  <meta property="og:title" content="Gamespotlight: Share & Discover Top Gaming Clips">
-  <meta property="og:description" content="Show the world your best gaming moments. Share, get recognized, and join our community!">
-  <meta property="og:image" content="https://m.youtube.com/channel/UCRakYVi0r3ipwKiTuBjOwSw/profile.jpg">
-  <meta property="og:url" content="https://gamespotlight.com">
-  <meta name="twitter:card" content="summary_large_image">
   <style>
     body {
       font-family: 'Segoe UI', Arial, sans-serif;
@@ -30,7 +23,6 @@
       font-size: 2.4rem;
       letter-spacing: 2px;
       color: #00ffe7;
-      cursor: pointer;
     }
     header p {
       margin: 8px 0 0 0;
@@ -71,130 +63,6 @@
     .social-icons a:hover {
       transform: scale(1.2);
     }
-    .cta {
-      display: inline-block;
-      background: linear-gradient(90deg, #00ffe7 0%, #00bfff 100%);
-      color: #15181d;
-      padding: 12px 28px;
-      border-radius: 30px;
-      font-weight: bold;
-      font-size: 1.1rem;
-      margin-top: 18px;
-      margin-bottom: 12px;
-      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-      box-shadow: 0 2px 8px rgba(0,255,231,0.14);
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-    }
-    .cta:hover, .cta:focus {
-      background: linear-gradient(90deg, #ffd700 0%, #00ffe7 100%);
-      color: #15181d;
-      box-shadow: 0 4px 18px rgba(255,215,0,0.12);
-      outline: none;
-    }
-    .features-list {
-      list-style: none;
-      padding: 0;
-      margin: 1.1em 0 0 0;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 14px;
-    }
-    .features-list li {
-      background: #191b22;
-      padding: 14px 18px;
-      border-radius: 8px;
-      box-shadow: 0 1px 4px rgba(0,255,231,0.04);
-      display: flex;
-      align-items: flex-start;
-      gap: 9px;
-    }
-    .features-list li::before {
-      content: '🎮';
-      font-size: 1.3em;
-      margin-right: 6px;
-    }
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0,0,0,0);
-      border: 0;
-    }
-    .skip-link {
-      position: absolute;
-      left: -999px;
-      top: 2px;
-      background: #00ffe7;
-      color: #15181d;
-      padding: 8px 14px;
-      z-index: 100;
-      border-radius: 4px;
-      transition: left 0.3s;
-    }
-    .skip-link:focus {
-      left: 10px;
-    }
-    .easter-egg-hint {
-      display: block;
-      width: 100%;
-      text-align: center;
-      margin: 28px 0 16px 0;
-      color: #ffd700;
-      font-size: 1.06rem;
-      letter-spacing: 1px;
-      font-family: inherit;
-      background: rgba(30,34,43,0.45);
-      padding: 10px 0 8px 0;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.10);
-      user-select: none;
-    }
-    .gamer-compliment-egg {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(30,34,43,0.97);
-      color: #00ffe7;
-      border: 2px solid #ffd700;
-      border-radius: 18px;
-      padding: 34px 40px;
-      text-align: center;
-      font-size: 1.2em;
-      z-index: 9999;
-      box-shadow: 0 6px 32px rgba(0,255,231,0.25);
-      min-width: 260px;
-      max-width: 90vw;
-    }
-    .gamer-compliment-egg .rarity {
-      display: block;
-      margin-top: 8px;
-      font-size: .95em;
-      color: #ffd700;
-      letter-spacing: 1px;
-    }
-    .gamer-compliment-egg button {
-      margin-top: 18px;
-      background: #00ffe7;
-      color: #15181d;
-      border: none;
-      border-radius: 6px;
-      font-size: 1em;
-      padding: 8px 20px;
-      cursor: pointer;
-      box-shadow: 0 1px 4px rgba(0,255,231,0.16);
-      font-weight: bold;
-      transition: background 0.2s, color 0.2s;
-    }
-    .gamer-compliment-egg button:hover {
-      background: #ffd700;
-      color: #15181d;
-    }
     footer {
       font-size: 1rem;
       color: #b0b8c1;
@@ -211,47 +79,23 @@
       header h1 {
         font-size: 1.4rem;
       }
-      .features-list {
-        grid-template-columns: 1fr;
-      }
-      .easter-egg-hint {
-        font-size: 0.98rem;
-        margin: 20px 0 10px 0;
-      }
-      .gamer-compliment-egg {
-        font-size: 1.05em;
-        padding: 18px 8px;
-        min-width: 160px;
-      }
     }
   </style>
 </head>
 <body>
-  <a href="#main-content" class="skip-link">Skip to main content</a>
   <header>
     <h1>Gamespotlight</h1>
     <p>Share &amp; Discover Top Gaming Clips</p>
   </header>
-  <main id="main-content">
-    <!-- Call to Action -->
-    <section>
-      <h2>Get Featured!</h2>
-      <p>
-        Ready to show off your best moments? Submit your clip via
-        <a href="https://discord.gg/cBCVEK6R" target="_blank" rel="noopener">Discord</a>
-        or <a href="mailto:connect.Gamespotlight@gmail.com">email</a>. If selected, you could be our next viral gaming star!
-      </p>
-      <a href="https://discord.gg/cBCVEK6R" class="cta" target="_blank" rel="noopener">Submit Your Clip</a>
-    </section>
-
+  <main>
     <!-- About Section (with working YouTube Shorts embed) -->
     <section>
       <h2>About This Website</h2>
       <p>
-        Gamespotlight was created to give gamers like you a chance to get noticed! Share your best game clips, and if they go viral, you'll get the recognition you deserve. 
+        This website was created to give gamers like you a chance to get noticed! You can share your best game clips, and if they go viral, you'll get the recognition you deserve.
       </p>
       <p>
-        Post your clips on our <a href="https://discord.gg/cBCVEK6R" target="_blank" rel="noopener">Discord server</a> or send them via email, and we'll share them. If they go viral, you’ll see the results of your fame!
+        Post your clips on our <a href="https://discord.gg/cBCVEK6R" target="_blank">Discord server</a> or send them via email, and we'll share them. If they go viral, you’ll see the results of your fame!
       </p>
       <!-- Embed YouTube Shorts - responsive and accessible -->
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;">
@@ -264,20 +108,8 @@
           style="position:absolute;top:0;left:0;width:100%;height:100%;">
         </iframe>
       </div>
-      <ul class="features-list" aria-label="Platform Features">
-        <li>Share your best gaming moments easily</li>
-        <li>Get featured on YouTube and Discord</li>
-        <li>Community-driven voting and feedback</li>
-        <li>Discover trending clips from gamers worldwide</li>
-        <li>Opportunities for collaboration and networking</li>
-        <li>Safe, supportive, and fun community</li>
-      </ul>
     </section>
   </main>
-  <!-- Easter egg hint at the very end, before footer -->
-  <div class="easter-egg-hint">
-    👉 Pssst... click the <b>Gamespotlight</b> title above <u>7 times</u> for a surprise! :&gt;&gt;
-  </div>
   <!-- Footer -->
   <footer>
     <div class="social-icons" aria-label="Social media links">
@@ -295,101 +127,5 @@
       &copy; 2025 Gamespotlight &mdash; Share Your Best Gaming Moments!
     </div>
   </footer>
-  <!-- Gamerlike Easter Egg Script -->
-  <script>
-  (function() {
-    const compliments = [
-      { text: "Your gaming reflexes are next-level! 🚀", rarity: "I don't know" },
-      { text: "Legend says your aim is powered by AI.", rarity: "I don't know" },
-      { text: "You carry harder than a GPU on overclock.", rarity: "I don't know" },
-      { text: "You make speedrunners look slow.", rarity: "I don't know" },
-      { text: "Your strategy is the meta. Others just follow.", rarity: "I don't know" },
-      { text: "You’re the final boss everyone fears.", rarity: "Legendary" },
-      { text: "No lootbox could contain your skills.", rarity: "I don't know" },
-      { text: "When you queue up, matchmaking says: 'Good luck!'", rarity: "I don't know" },
-      { text: "Your highlight reels need their own channel.", rarity: "Legendary" },
-      { text: "Even RNG bows to your will.", rarity: "Legendary" }
-    ];
-
-    const legendaryIndexes = compliments
-      .map((c, i) => c.rarity.toLowerCase() === "legendary" ? i : -1)
-      .filter(i => i >= 0);
-
-    const headerTitle = document.querySelector('header h1');
-    let tapCount = 0;
-    let clickTimestamps = [];
-    let timeout;
-
-    function getRandomCompliment(clickSpeed) {
-      // clickSpeed is ms between first and last click (for 7 clicks)
-      // If fast (<1.2s), legendary chance = 60%
-      // If medium (<2.5s), legendary chance = 30%
-      // Else, legendary = 10%
-      let legendaryChance = 0.1;
-      if (clickSpeed < 1200) legendaryChance = 0.6;
-      else if (clickSpeed < 2500) legendaryChance = 0.3;
-
-      if (Math.random() < legendaryChance && legendaryIndexes.length) {
-        const idx = legendaryIndexes[Math.floor(Math.random() * legendaryIndexes.length)];
-        return compliments[idx];
-      }
-      // Otherwise, pick any non-legendary
-      const nonLegendary = compliments.filter(c => c.rarity.toLowerCase() !== "legendary");
-      return nonLegendary[Math.floor(Math.random() * nonLegendary.length)];
-    }
-
-    function showComplimentEgg(compliment) {
-      // Remove any previous
-      document.querySelectorAll('.gamer-compliment-egg').forEach(e => e.remove());
-
-      const egg = document.createElement('div');
-      egg.className = 'gamer-compliment-egg';
-      egg.setAttribute('role', 'alertdialog');
-      egg.setAttribute('aria-live', 'polite');
-      egg.tabIndex = -1;
-      egg.innerHTML =
-        `<span style="font-size:2em;">🎮</span><br><b>${compliment.text}</b><br><span class="rarity">Rarity: ${compliment.rarity}</span>
-        <br><button aria-label="Close compliment">Nice!</button>`;
-
-      document.body.appendChild(egg);
-      egg.focus();
-
-      egg.querySelector('button').addEventListener('click', function() {
-        egg.style.transition = 'opacity 0.7s';
-        egg.style.opacity = 0;
-        setTimeout(() => egg.remove(), 700);
-      });
-
-      // Auto close after 6s
-      setTimeout(() => {
-        if (egg.parentNode) {
-          egg.style.transition = 'opacity 0.7s';
-          egg.style.opacity = 0;
-          setTimeout(() => egg.remove(), 700);
-        }
-      }, 6000);
-    }
-
-    if (headerTitle) {
-      headerTitle.addEventListener('click', function() {
-        const now = Date.now();
-        if (tapCount === 0) clickTimestamps = [now];
-        else clickTimestamps.push(now);
-
-        tapCount++;
-        clearTimeout(timeout);
-        // Reset if too long between taps
-        timeout = setTimeout(() => { tapCount = 0; clickTimestamps = []; }, 1200);
-
-        if (tapCount === 7) {
-          const elapsed = clickTimestamps[6] - clickTimestamps[0];
-          tapCount = 0;
-          clickTimestamps = [];
-          showComplimentEgg(getRandomCompliment(elapsed));
-        }
-      });
-    }
-  })();
-  </script>
 </body>
 </html>
