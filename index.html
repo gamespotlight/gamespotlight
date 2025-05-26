@@ -30,7 +30,6 @@
       font-size: 2.4rem;
       letter-spacing: 2px;
       color: #00ffe7;
-      cursor: pointer;
     }
     header p {
       margin: 8px 0 0 0;
@@ -139,21 +138,6 @@
     .skip-link:focus {
       left: 10px;
     }
-    .easter-egg-hint {
-      display: block;
-      width: 100%;
-      text-align: center;
-      margin: 28px 0 16px 0;
-      color: #ffd700;
-      font-size: 1.06rem;
-      letter-spacing: 1px;
-      font-family: inherit;
-      background: rgba(30,34,43,0.45);
-      padding: 10px 0 8px 0;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.10);
-      user-select: none;
-    }
     footer {
       font-size: 1rem;
       color: #b0b8c1;
@@ -172,10 +156,6 @@
       }
       .features-list {
         grid-template-columns: 1fr;
-      }
-      .easter-egg-hint {
-        font-size: 0.98rem;
-        margin: 20px 0 10px 0;
       }
     }
   </style>
@@ -228,10 +208,6 @@
       </ul>
     </section>
   </main>
-  <!-- Easter egg hint at the very end, before footer -->
-  <div class="easter-egg-hint">
-    👉 Pssst... click the <b>Gamespotlight</b> title above for an easter egg! :&gt;&gt;
-  </div>
   <!-- Footer -->
   <footer>
     <div class="social-icons" aria-label="Social media links">
@@ -249,57 +225,5 @@
       &copy; 2025 Gamespotlight &mdash; Share Your Best Gaming Moments!
     </div>
   </footer>
-  <!-- Gamerlike Easter Egg Script -->
-  <script>
-  (function() {
-    const headerTitle = document.querySelector('header h1');
-    let tapCount = 0;
-    let timeout;
-
-    if (headerTitle) {
-      headerTitle.addEventListener('click', function() {
-        tapCount++;
-        clearTimeout(timeout);
-        // Reset if they pause too long between taps
-        timeout = setTimeout(() => { tapCount = 0; }, 1200);
-
-        if (tapCount === 7) {
-          tapCount = 0;
-          showGamerEasterEgg();
-        }
-      });
-    }
-
-    function showGamerEasterEgg() {
-      const egg = document.createElement('div');
-      egg.innerHTML = "<span style='font-size:2em;'>👾</span><br><b>LEVEL UP!</b><br>You found the secret!";
-      egg.style.position = 'fixed';
-      egg.style.top = '50%';
-      egg.style.left = '50%';
-      egg.style.transform = 'translate(-50%, -50%)';
-      egg.style.background = 'rgba(30,34,43,0.97)';
-      egg.style.color = '#00ffe7';
-      egg.style.border = '2px solid #ffd700';
-      egg.style.borderRadius = '18px';
-      egg.style.padding = '34px 40px';
-      egg.style.textAlign = 'center';
-      egg.style.fontSize = '1.2em';
-      egg.style.zIndex = 9999;
-      egg.style.boxShadow = '0 6px 32px rgba(0,255,231,0.25)';
-      egg.setAttribute('role', 'alertdialog');
-      egg.setAttribute('aria-live', 'polite');
-      egg.tabIndex = -1;
-
-      document.body.appendChild(egg);
-      egg.focus();
-
-      setTimeout(() => {
-        egg.style.transition = 'opacity 0.7s';
-        egg.style.opacity = 0;
-        setTimeout(() => egg.remove(), 700);
-      }, 2900);
-    }
-  })();
-  </script>
 </body>
 </html>
