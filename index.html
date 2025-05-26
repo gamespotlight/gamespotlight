@@ -154,49 +154,52 @@
       box-shadow: 0 2px 10px rgba(0,0,0,0.10);
       user-select: none;
     }
-    /* Small hint at the very bottom for the new Easter egg */
-    .secret-tap-hint {
-      font-size: 0.9rem;
-      color: #aaa7c0;
+    .gamer-compliment-egg {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(30,34,43,0.97);
+      color: #00ffe7;
+      border: 2px solid #ffd700;
+      border-radius: 18px;
+      padding: 34px 40px;
       text-align: center;
-      margin: 0 0 12px 0;
-      letter-spacing: 0.5px;
-      opacity: 0.80;
-      font-family: inherit;
-      width: 100%;
-      user-select: none;
+      font-size: 1.2em;
+      z-index: 9999;
+      box-shadow: 0 6px 32px rgba(0,255,231,0.25);
+      min-width: 260px;
+      max-width: 90vw;
+    }
+    .gamer-compliment-egg .rarity {
+      display: block;
+      margin-top: 8px;
+      font-size: .95em;
+      color: #ffd700;
+      letter-spacing: 1px;
+    }
+    .gamer-compliment-egg button {
+      margin-top: 18px;
+      background: #00ffe7;
+      color: #15181d;
+      border: none;
+      border-radius: 6px;
+      font-size: 1em;
+      padding: 8px 20px;
+      cursor: pointer;
+      box-shadow: 0 1px 4px rgba(0,255,231,0.16);
+      font-weight: bold;
+      transition: background 0.2s, color 0.2s;
+    }
+    .gamer-compliment-egg button:hover {
+      background: #ffd700;
+      color: #15181d;
     }
     footer {
       font-size: 1rem;
       color: #b0b8c1;
       border-top: 1px solid #21242b;
       margin-top: 36px;
-    }
-    /* Compliment popup */
-    .compliment-popup {
-      position: fixed;
-      left: 50%;
-      bottom: 60px;
-      transform: translateX(-50%);
-      background: #181c25;
-      color: #00ffe7;
-      border: 2px solid #ffd700;
-      border-radius: 14px;
-      padding: 22px 32px;
-      font-size: 1.12em;
-      font-weight: 600;
-      box-shadow: 0 4px 24px rgba(0,255,231,0.11);
-      z-index: 10001;
-      text-align: center;
-      pointer-events: none;
-      animation: popin 0.3s cubic-bezier(.39,.58,.57,1.48), fadeout 0.7s 4.3s forwards;
-    }
-    @keyframes popin {
-      from { opacity: 0; transform: translateX(-50%) scale(0.8);}
-      to   { opacity: 1; transform: translateX(-50%) scale(1);}
-    }
-    @keyframes fadeout {
-      to { opacity: 0;}
     }
     @media (max-width: 600px) {
       main, section {
@@ -215,12 +218,10 @@
         font-size: 0.98rem;
         margin: 20px 0 10px 0;
       }
-      .compliment-popup {
-        padding: 13px 8px;
-        font-size: 1em;
-      }
-      .secret-tap-hint {
-        font-size: 0.81rem;
+      .gamer-compliment-egg {
+        font-size: 1.05em;
+        padding: 18px 8px;
+        min-width: 160px;
       }
     }
   </style>
@@ -275,11 +276,7 @@
   </main>
   <!-- Easter egg hint at the very end, before footer -->
   <div class="easter-egg-hint">
-    👉 Pssst... click the <b>Gamespotlight</b> title above for an easter egg! :&gt;&gt;
-  </div>
-  <!-- Tiny bottom hint for the new tap Easter egg -->
-  <div class="secret-tap-hint">
-    psst click gamespotlight 7 times for a surprise
+    👉 Pssst... click the <b>Gamespotlight</b> title above <u>7 times</u> for a surprise! :&gt;&gt;
   </div>
   <!-- Footer -->
   <footer>
@@ -301,100 +298,96 @@
   <!-- Gamerlike Easter Egg Script -->
   <script>
   (function() {
-    const headerTitle = document.querySelector('header h1');
-    let tapCount = 0;
-    let lastTap = 0;
-    let firstTap = 0;
-    let timeout;
-
-    // Compliments with default probabilities for slow, medium, fast tapping
     const compliments = [
-      { text: "You're a gaming legend! 🎮🔥",        slow: 15, medium: 12, fast: 8 },
-      { text: "Your reflexes are unreal! ⚡",         slow: 7,  medium: 13, fast: 20 },
-      { text: "Big brain plays! 🧠",                 slow: 12, medium: 12, fast: 10 },
-      { text: "That aim? Chef's kiss. 👌",           slow: 7,  medium: 8,  fast: 13 },
-      { text: "You bring the hype to every match! 🚀",slow: 8,  medium: 10, fast: 10 },
-      { text: "Your skills are next level! 💯",       slow: 11, medium: 10, fast: 8 },
-      { text: "Clip it! You're on fire! 🔥",          slow: 10, medium: 10, fast: 12 },
-      { text: "MVP material right here. 🏆",          slow: 10, medium: 10, fast: 8 },
-      { text: "You make it look easy. 😎",            slow: 10, medium: 8,  fast: 6 },
-      { text: "You inspire the squad! 💪",            slow: 10, medium: 7,  fast: 5 }
+      { text: "Your gaming reflexes are next-level! 🚀", rarity: "I don't know" },
+      { text: "Legend says your aim is powered by AI.", rarity: "I don't know" },
+      { text: "You carry harder than a GPU on overclock.", rarity: "I don't know" },
+      { text: "You make speedrunners look slow.", rarity: "I don't know" },
+      { text: "Your strategy is the meta. Others just follow.", rarity: "I don't know" },
+      { text: "You’re the final boss everyone fears.", rarity: "Legendary" },
+      { text: "No lootbox could contain your skills.", rarity: "I don't know" },
+      { text: "When you queue up, matchmaking says: 'Good luck!'", rarity: "I don't know" },
+      { text: "Your highlight reels need their own channel.", rarity: "Legendary" },
+      { text: "Even RNG bows to your will.", rarity: "Legendary" }
     ];
 
-    function pickRandomCompliment(speed) {
-      // choose weight set
-      const total = compliments.reduce((a, c) => a + c[speed], 0);
-      let r = Math.random() * total;
-      for (let i = 0; i < compliments.length; i++) {
-        if (r < compliments[i][speed]) return compliments[i].text;
-        r -= compliments[i][speed];
+    const legendaryIndexes = compliments
+      .map((c, i) => c.rarity.toLowerCase() === "legendary" ? i : -1)
+      .filter(i => i >= 0);
+
+    const headerTitle = document.querySelector('header h1');
+    let tapCount = 0;
+    let clickTimestamps = [];
+    let timeout;
+
+    function getRandomCompliment(clickSpeed) {
+      // clickSpeed is ms between first and last click (for 7 clicks)
+      // If fast (<1.2s), legendary chance = 60%
+      // If medium (<2.5s), legendary chance = 30%
+      // Else, legendary = 10%
+      let legendaryChance = 0.1;
+      if (clickSpeed < 1200) legendaryChance = 0.6;
+      else if (clickSpeed < 2500) legendaryChance = 0.3;
+
+      if (Math.random() < legendaryChance && legendaryIndexes.length) {
+        const idx = legendaryIndexes[Math.floor(Math.random() * legendaryIndexes.length)];
+        return compliments[idx];
       }
-      return compliments[0].text; // Fallback
+      // Otherwise, pick any non-legendary
+      const nonLegendary = compliments.filter(c => c.rarity.toLowerCase() !== "legendary");
+      return nonLegendary[Math.floor(Math.random() * nonLegendary.length)];
     }
 
-    function showComplimentPopup(speed) {
-      if (document.querySelector('.compliment-popup')) return;
-      const compliment = pickRandomCompliment(speed);
-      const popup = document.createElement('div');
-      popup.className = 'compliment-popup';
-      popup.textContent = compliment;
-      document.body.appendChild(popup);
+    function showComplimentEgg(compliment) {
+      // Remove any previous
+      document.querySelectorAll('.gamer-compliment-egg').forEach(e => e.remove());
+
+      const egg = document.createElement('div');
+      egg.className = 'gamer-compliment-egg';
+      egg.setAttribute('role', 'alertdialog');
+      egg.setAttribute('aria-live', 'polite');
+      egg.tabIndex = -1;
+      egg.innerHTML =
+        `<span style="font-size:2em;">🎮</span><br><b>${compliment.text}</b><br><span class="rarity">Rarity: ${compliment.rarity}</span>
+        <br><button aria-label="Close compliment">Nice!</button>`;
+
+      document.body.appendChild(egg);
+      egg.focus();
+
+      egg.querySelector('button').addEventListener('click', function() {
+        egg.style.transition = 'opacity 0.7s';
+        egg.style.opacity = 0;
+        setTimeout(() => egg.remove(), 700);
+      });
+
+      // Auto close after 6s
       setTimeout(() => {
-        popup.style.opacity = 0;
-        setTimeout(() => popup.remove(), 800);
-      }, 5000);
+        if (egg.parentNode) {
+          egg.style.transition = 'opacity 0.7s';
+          egg.style.opacity = 0;
+          setTimeout(() => egg.remove(), 700);
+        }
+      }, 6000);
     }
 
     if (headerTitle) {
       headerTitle.addEventListener('click', function() {
         const now = Date.now();
-        if (tapCount === 0) firstTap = now;
+        if (tapCount === 0) clickTimestamps = [now];
+        else clickTimestamps.push(now);
+
         tapCount++;
         clearTimeout(timeout);
-        // Reset if they pause too long between taps
-        timeout = setTimeout(() => { tapCount = 0; }, 1200);
+        // Reset if too long between taps
+        timeout = setTimeout(() => { tapCount = 0; clickTimestamps = []; }, 1200);
 
         if (tapCount === 7) {
-          let totalTime = now - firstTap;
-          // Under 1.0s = fast, <2.5s = medium, else slow
-          let speed = "slow";
-          if (totalTime < 1000) speed = "fast";
-          else if (totalTime < 2500) speed = "medium";
-          showComplimentPopup(speed);
+          const elapsed = clickTimestamps[6] - clickTimestamps[0];
           tapCount = 0;
+          clickTimestamps = [];
+          showComplimentEgg(getRandomCompliment(elapsed));
         }
       });
-    }
-
-    // Keep the original "LEVEL UP!" egg for old hint
-    function showGamerEasterEgg() {
-      const egg = document.createElement('div');
-      egg.innerHTML = "<span style='font-size:2em;'>👾</span><br><b>LEVEL UP!</b><br>You found the secret!";
-      egg.style.position = 'fixed';
-      egg.style.top = '50%';
-      egg.style.left = '50%';
-      egg.style.transform = 'translate(-50%, -50%)';
-      egg.style.background = 'rgba(30,34,43,0.97)';
-      egg.style.color = '#00ffe7';
-      egg.style.border = '2px solid #ffd700';
-      egg.style.borderRadius = '18px';
-      egg.style.padding = '34px 40px';
-      egg.style.textAlign = 'center';
-      egg.style.fontSize = '1.2em';
-      egg.style.zIndex = 9999;
-      egg.style.boxShadow = '0 6px 32px rgba(0,255,231,0.25)';
-      egg.setAttribute('role', 'alertdialog');
-      egg.setAttribute('aria-live', 'polite');
-      egg.tabIndex = -1;
-
-      document.body.appendChild(egg);
-      egg.focus();
-
-      setTimeout(() => {
-        egg.style.transition = 'opacity 0.7s';
-        egg.style.opacity = 0;
-        setTimeout(() => egg.remove(), 700);
-      }, 2900);
     }
   })();
   </script>
