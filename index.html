@@ -154,11 +154,49 @@
       box-shadow: 0 2px 10px rgba(0,0,0,0.10);
       user-select: none;
     }
+    /* Small hint at the very bottom for the new Easter egg */
+    .secret-tap-hint {
+      font-size: 0.9rem;
+      color: #8888a0;
+      text-align: center;
+      margin: 0 0 12px 0;
+      letter-spacing: 0.5px;
+      opacity: 0.73;
+      font-family: inherit;
+      width: 100%;
+      user-select: none;
+    }
     footer {
       font-size: 1rem;
       color: #b0b8c1;
       border-top: 1px solid #21242b;
       margin-top: 36px;
+    }
+    /* Compliment popup */
+    .compliment-popup {
+      position: fixed;
+      left: 50%;
+      bottom: 60px;
+      transform: translateX(-50%);
+      background: #181c25;
+      color: #00ffe7;
+      border: 2px solid #ffd700;
+      border-radius: 14px;
+      padding: 22px 32px;
+      font-size: 1.12em;
+      font-weight: 600;
+      box-shadow: 0 4px 24px rgba(0,255,231,0.11);
+      z-index: 10001;
+      text-align: center;
+      pointer-events: none;
+      animation: popin 0.3s cubic-bezier(.39,.58,.57,1.48), fadeout 0.7s 4.3s forwards;
+    }
+    @keyframes popin {
+      from { opacity: 0; transform: translateX(-50%) scale(0.8);}
+      to   { opacity: 1; transform: translateX(-50%) scale(1);}
+    }
+    @keyframes fadeout {
+      to { opacity: 0;}
     }
     @media (max-width: 600px) {
       main, section {
@@ -176,6 +214,13 @@
       .easter-egg-hint {
         font-size: 0.98rem;
         margin: 20px 0 10px 0;
+      }
+      .compliment-popup {
+        padding: 13px 8px;
+        font-size: 1em;
+      }
+      .secret-tap-hint {
+        font-size: 0.81rem;
       }
     }
   </style>
@@ -232,6 +277,10 @@
   <div class="easter-egg-hint">
     👉 Pssst... click the <b>Gamespotlight</b> title above for an easter egg! :&gt;&gt;
   </div>
+  <!-- Tiny bottom hint for the new tap Easter egg -->
+  <div class="secret-tap-hint">
+    TAP 7 TIMES THE TITLE GAMESPOTLIGHT FOR SURPRISE
+  </div>
   <!-- Footer -->
   <footer>
     <div class="social-icons" aria-label="Social media links">
@@ -256,6 +305,42 @@
     let tapCount = 0;
     let timeout;
 
+    // Compliment list with weights (chances, sum to 100)
+    const compliments = [
+      { text: "You're a gaming legend! 🎮🔥", chance: 18 },
+      { text: "That aim? Chefs kiss. 👌", chance: 12 },
+      { text: "You bring the hype to every match! 🚀", chance: 17 },
+      { text: "Your skills are next level! 💯", chance: 16 },
+      { text: "Clip it! You're on fire! 🔥", chance: 14 },
+      { text: "MVP material right here. 🏆", chance: 11 },
+      { text: "You make it look easy. 😎", chance: 7 },
+      { text: "You inspire the squad! 💪", chance: 5 }
+    ];
+
+    function pickRandomCompliment() {
+      // Weighted random pick
+      const total = compliments.reduce((a, c) => a + c.chance, 0);
+      let r = Math.random() * total;
+      for (let i = 0; i < compliments.length; i++) {
+        if (r < compliments[i].chance) return compliments[i].text;
+        r -= compliments[i].chance;
+      }
+      return compliments[0].text; // Fallback
+    }
+
+    function showComplimentPopup() {
+      if (document.querySelector('.compliment-popup')) return;
+      const compliment = pickRandomCompliment();
+      const popup = document.createElement('div');
+      popup.className = 'compliment-popup';
+      popup.textContent = compliment;
+      document.body.appendChild(popup);
+      setTimeout(() => {
+        popup.style.opacity = 0;
+        setTimeout(() => popup.remove(), 800);
+      }, 5000);
+    }
+
     if (headerTitle) {
       headerTitle.addEventListener('click', function() {
         tapCount++;
@@ -265,11 +350,12 @@
 
         if (tapCount === 7) {
           tapCount = 0;
-          showGamerEasterEgg();
+          showComplimentPopup();
         }
       });
     }
 
+    // Keep the original "LEVEL UP!" egg for old hint
     function showGamerEasterEgg() {
       const egg = document.createElement('div');
       egg.innerHTML = "<span style='font-size:2em;'>👾</span><br><b>LEVEL UP!</b><br>You found the secret!";
@@ -299,6 +385,19 @@
         setTimeout(() => egg.remove(), 700);
       }, 2900);
     }
+
+    // Optionally: Keep the original hint working as well
+    // (click 7 times for compliment, click+hold for LEVEL UP!)
+    let holdTimer;
+    headerTitle.addEventListener('mousedown', function() {
+      holdTimer = setTimeout(showGamerEasterEgg, 1200);
+    });
+    headerTitle.addEventListener('mouseup', function() {
+      clearTimeout(holdTimer);
+    });
+    headerTitle.addEventListener('mouseleave', function() {
+      clearTimeout(holdTimer);
+    });
   })();
   </script>
 </body>
