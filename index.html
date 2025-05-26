@@ -157,11 +157,11 @@
     /* Small hint at the very bottom for the new Easter egg */
     .secret-tap-hint {
       font-size: 0.9rem;
-      color: #8888a0;
+      color: #aaa7c0;
       text-align: center;
       margin: 0 0 12px 0;
       letter-spacing: 0.5px;
-      opacity: 0.73;
+      opacity: 0.80;
       font-family: inherit;
       width: 100%;
       user-select: none;
@@ -279,7 +279,7 @@
   </div>
   <!-- Tiny bottom hint for the new tap Easter egg -->
   <div class="secret-tap-hint">
-    TAP 7 TIMES THE TITLE GAMESPOTLIGHT FOR SURPRISE
+    psst click gamespotlight 7 times for a surprise
   </div>
   <!-- Footer -->
   <footer>
@@ -303,34 +303,38 @@
   (function() {
     const headerTitle = document.querySelector('header h1');
     let tapCount = 0;
+    let lastTap = 0;
+    let firstTap = 0;
     let timeout;
 
-    // Compliment list with weights (chances, sum to 100)
+    // Compliments with default probabilities for slow, medium, fast tapping
     const compliments = [
-      { text: "You're a gaming legend! 🎮🔥", chance: 18 },
-      { text: "That aim? Chefs kiss. 👌", chance: 12 },
-      { text: "You bring the hype to every match! 🚀", chance: 17 },
-      { text: "Your skills are next level! 💯", chance: 16 },
-      { text: "Clip it! You're on fire! 🔥", chance: 14 },
-      { text: "MVP material right here. 🏆", chance: 11 },
-      { text: "You make it look easy. 😎", chance: 7 },
-      { text: "You inspire the squad! 💪", chance: 5 }
+      { text: "You're a gaming legend! 🎮🔥",        slow: 15, medium: 12, fast: 8 },
+      { text: "Your reflexes are unreal! ⚡",         slow: 7,  medium: 13, fast: 20 },
+      { text: "Big brain plays! 🧠",                 slow: 12, medium: 12, fast: 10 },
+      { text: "That aim? Chef's kiss. 👌",           slow: 7,  medium: 8,  fast: 13 },
+      { text: "You bring the hype to every match! 🚀",slow: 8,  medium: 10, fast: 10 },
+      { text: "Your skills are next level! 💯",       slow: 11, medium: 10, fast: 8 },
+      { text: "Clip it! You're on fire! 🔥",          slow: 10, medium: 10, fast: 12 },
+      { text: "MVP material right here. 🏆",          slow: 10, medium: 10, fast: 8 },
+      { text: "You make it look easy. 😎",            slow: 10, medium: 8,  fast: 6 },
+      { text: "You inspire the squad! 💪",            slow: 10, medium: 7,  fast: 5 }
     ];
 
-    function pickRandomCompliment() {
-      // Weighted random pick
-      const total = compliments.reduce((a, c) => a + c.chance, 0);
+    function pickRandomCompliment(speed) {
+      // choose weight set
+      const total = compliments.reduce((a, c) => a + c[speed], 0);
       let r = Math.random() * total;
       for (let i = 0; i < compliments.length; i++) {
-        if (r < compliments[i].chance) return compliments[i].text;
-        r -= compliments[i].chance;
+        if (r < compliments[i][speed]) return compliments[i].text;
+        r -= compliments[i][speed];
       }
       return compliments[0].text; // Fallback
     }
 
-    function showComplimentPopup() {
+    function showComplimentPopup(speed) {
       if (document.querySelector('.compliment-popup')) return;
-      const compliment = pickRandomCompliment();
+      const compliment = pickRandomCompliment(speed);
       const popup = document.createElement('div');
       popup.className = 'compliment-popup';
       popup.textContent = compliment;
@@ -343,14 +347,21 @@
 
     if (headerTitle) {
       headerTitle.addEventListener('click', function() {
+        const now = Date.now();
+        if (tapCount === 0) firstTap = now;
         tapCount++;
         clearTimeout(timeout);
         // Reset if they pause too long between taps
         timeout = setTimeout(() => { tapCount = 0; }, 1200);
 
         if (tapCount === 7) {
+          let totalTime = now - firstTap;
+          // Under 1.0s = fast, <2.5s = medium, else slow
+          let speed = "slow";
+          if (totalTime < 1000) speed = "fast";
+          else if (totalTime < 2500) speed = "medium";
+          showComplimentPopup(speed);
           tapCount = 0;
-          showComplimentPopup();
         }
       });
     }
@@ -385,19 +396,6 @@
         setTimeout(() => egg.remove(), 700);
       }, 2900);
     }
-
-    // Optionally: Keep the original hint working as well
-    // (click 7 times for compliment, click+hold for LEVEL UP!)
-    let holdTimer;
-    headerTitle.addEventListener('mousedown', function() {
-      holdTimer = setTimeout(showGamerEasterEgg, 1200);
-    });
-    headerTitle.addEventListener('mouseup', function() {
-      clearTimeout(holdTimer);
-    });
-    headerTitle.addEventListener('mouseleave', function() {
-      clearTimeout(holdTimer);
-    });
   })();
   </script>
 </body>
