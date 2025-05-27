@@ -1,3 +1,4 @@
+<!-- Move the Google Translate widget to the top right -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -208,6 +209,12 @@
         left: 0;
         top: 40px;
       }
+      /* Adjust Google Translate widget for small screens */
+      #google_translate_element {
+        right: 5px !important;
+        top: 5px !important;
+        transform: none !important;
+      }
     }
     .video-container {
       position: relative;
@@ -276,11 +283,23 @@
     .social-icons a:hover {
       color: #ff7e5f;
     }
+
+    /* Move Google Translate widget to the top right */
+    #google_translate_element {
+      position: fixed !important;
+      top: 10px !important;
+      right: 10px !important;
+      left: auto !important;
+      z-index: 9999 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      padding: 0 !important;
+    }
   </style>
 </head>
 <body>
-  <!-- Google Translate Widget -->
-  <div id="google_translate_element" style="position: fixed; top: 10px; left: 10px; z-index: 999;"></div>
+  <!-- Google Translate Widget (now top right) -->
+  <div id="google_translate_element"></div>
 
   <div class="menu" tabindex="0">
     <button id="menuToggle" aria-label="Open menu">&#9776; Menu</button>
