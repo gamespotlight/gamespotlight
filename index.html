@@ -265,30 +265,48 @@
     .social-icons a:hover {
       color: #ff7e5f;
     }
-    /* --- Chatbot Styles --- */
+
+    /* --- GameBot Ball & Chat --- */
+    #gamebot-ball {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 2000;
+      width: 62px; height: 62px;
+      background: linear-gradient(135deg,#2575fc,#ff7e5f 90%);
+      border-radius: 50%;
+      box-shadow: 0 2px 12px #0007;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: box-shadow 0.2s, transform 0.12s;
+      border: 3px solid #fff;
+    }
+    #gamebot-ball:hover { box-shadow: 0 4px 24px #000b; transform: scale(1.06);}
+    #gamebot-ball .emoji { font-size: 2em; user-select: none; }
     #gamebot-container {
       position: fixed;
-      right: 24px;
-      bottom: 24px;
+      right: 16px;
+      bottom: 88px;
       z-index: 2000;
-      width: 350px;
-      max-width: 97vw;
+      width: 96vw;
+      max-width: 360px;
       font-family: 'Press Start 2P', 'Arial', monospace;
-      background: rgba(34,40,60,0.98);
-      border: 4px solid #2575fc;
-      border-radius: 13px;
-      box-shadow: 0 4px 32px #0009;
-      display: flex;
+      background: rgba(34,40,60,0.97);
+      border: 3px solid #2575fc;
+      border-radius: 15px;
+      box-shadow: 0 4px 32px #000a;
+      display: none;
       flex-direction: column;
       transition: box-shadow 0.3s;
     }
     #gamebot-header {
       background: linear-gradient(90deg, #ff7e5f 60%, #feb47b 100%);
       color: #fff;
-      padding: 13px 18px;
-      border-radius: 9px 9px 0 0;
-      cursor: pointer;
-      font-size: 1.1em;
+      padding: 11px 15px;
+      border-radius: 12px 12px 0 0;
+      font-size: 1em;
       font-weight: bold;
       letter-spacing: 0.05em;
       text-shadow: 1px 1px 2px #0009;
@@ -298,12 +316,19 @@
       justify-content: space-between;
       user-select: none;
     }
-    #gamebot-toggle { background: none; border: none; color: white; font-size: 1.1em; cursor: pointer;}
+    #gamebot-close {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.3em;
+      cursor: pointer;
+      margin-left: 8px;
+    }
     #gamebot-messages {
       background: #22283c;
-      padding: 12px;
-      height: 230px;
-      max-height: 36vh;
+      padding: 11px;
+      height: 160px;
+      max-height: 32vh;
       overflow-y: auto;
       font-size: 1.03em;
       border-radius: 0 0 0 0;
@@ -316,52 +341,39 @@
       display: flex;
       border-top: 1px solid #334;
       background: #23244a;
-      border-radius: 0 0 9px 9px;
+      border-radius: 0 0 12px 12px;
     }
     #gamebot-input {
       flex: 1;
       border: none;
-      padding: 12px;
+      padding: 11px;
       font-size: 1em;
       font-family: 'Press Start 2P', 'Arial', monospace;
-      border-radius: 0 0 0 9px;
+      border-radius: 0 0 0 12px;
       background: #23244a;
       color: #fff;
       outline: none;
     }
     #gamebot-send {
       border: none;
-      padding: 10px 18px;
+      padding: 10px 14px;
       background: linear-gradient(90deg,#2575fc,#6a11cb);
       color: #fff;
       font-size: 1.1em;
-      border-radius: 0 0 9px 0;
+      border-radius: 0 0 12px 0;
       cursor: pointer;
       font-family: 'Press Start 2P', 'Arial', monospace;
       transition: background 0.2s;
     }
     #gamebot-send:hover { background: linear-gradient(90deg,#ff7e5f,#2575fc);}
-    .gamebot-msg {
-      margin: 6px 0;
-      line-height: 1.5;
-      word-break: break-word;
-    }
-    .gamebot-msg-user {
-      color: #feb47b;
-      text-align: right;
-    }
-    .gamebot-msg-bot {
-      color: #90f0c0;
-      text-align: left;
-    }
-    .gamebot-avatar {
-      font-size: 1.3em;
-      vertical-align: middle;
-      margin-right: 2px;
-    }
-    @media (max-width: 600px) {
-      #gamebot-container { width: 97vw; right: 0; bottom: 0;}
-      #gamebot-messages {max-height: 28vh;}
+    .gamebot-msg { margin: 5px 0; line-height: 1.5; word-break: break-word;}
+    .gamebot-msg-user { color: #feb47b; text-align: right;}
+    .gamebot-msg-bot { color: #90f0c0; text-align: left;}
+    .gamebot-avatar { font-size: 1.15em; vertical-align: middle; margin-right: 2px;}
+    @media (max-width:500px){
+      #gamebot-container {max-width: 99vw; right: 0; border-radius: 0;}
+      #gamebot-header {border-radius:0;}
+      #gamebot-input-row {border-radius:0;}
     }
     @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
   </style>
@@ -383,283 +395,4 @@
   <!-- About Section -->
   <section id="about">
     <h2>About This Website</h2>
-    <p>This website was created to give gamers like you a chance to get noticed! You can share your best game clips, and if they go viral, you'll get the recognition you deserve.</p>
-    <p>Post your clips on our Discord server or send them via email, and we'll share them. If they go viral, you’ll see the results of your fame!</p>
-  </section>
-  <!-- Games Section -->
-  <section id="games">
-    <h2>Supported Games</h2>
-    <p>Click below to view game clips and more!</p>
-    <div class="category-links">
-      <a href="#roblox-section">Roblox</a>
-      <a href="#minecraft-section">Minecraft</a>
-      <a href="#fortnite-section">Fortnite</a>
-      <a href="#rocketleague-section">Rocket League</a>
-      <a href="#apexlegends-section">Apex Legends</a>
-      <a href="#fifa25-section">FIFA FC 25</a>
-      <a href="#brawlstars-section">Brawl Stars</a>
-    </div>
-  </section>
-  <!-- Roblox Section -->
-  <section id="roblox-section">
-    <h2>Roblox</h2>
-    <p>Roblox lets you create and play millions of user-generated games across genres. Here's an awesome gameplay clip!</p>
-    <div class="video-container">
-      <iframe src="https://www.youtube.com/embed/noeF7SdfvjU" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
-  </section>
-  <!-- Minecraft Section -->
-  <section id="minecraft-section">
-    <h2>Minecraft</h2>
-    <p>Minecraft is a sandbox where you can explore, build, and survive in blocky worlds.</p>
-    <p>Support: Stealth🦍 <a href="https://vt.tiktok.com/ZSh145Avp/" target="_blank">Watch his Minecraft video here</a></p>  
-  </section>
-  <!-- Fortnite Section -->
-  <section id="fortnite-section">
-    <h2>Fortnite</h2>
-    <p>Fortnite is a popular battle royale and creative building game. Check it out!</p>
-    <div class="video-container">
-      <iframe src="https://www.youtube.com/embed/2OWiR2ysukY?si=UiqxrrZnOYnJl0vo" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
-    <p>Support: Badmigaming</p>
-  </section>
-  <!-- Rocket League Section -->
-  <section id="rocketleague-section">
-    <h2>Rocket League</h2>
-    <p>Play soccer with rocket-powered cars in Rocket League!</p>
-    <div class="video-container">
-      <iframe src="https://www.youtube.com/embed/l10Y08KBsYc?si=9LHHJnWLJbvLe3sF" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
-    <p>Support: Maggi_RI</p>
-  </section>
-  <!-- Apex Legends Section -->
-  <section id="apexlegends-section">
-    <h2>Apex Legends</h2>
-    <p>Team up and battle in Apex Legends!</p>
-    <p>Support: Frosti <a href="https://vt.tiktok.com/ZSro1xffj/" target="_blank">Watch his Apex video here</a></p>  
-  </section>
-  <!-- FIFA FC 25 Section -->
-  <section id="fifa25-section">
-    <h2>FIFA FC 25</h2>
-    <p>Experience the excitement of football with FIFA FC 25.</p>
-    <p>Support: A7snipzz <a href="https://vt.tiktok.com/ZSro1oJqc/" target="_blank">Watch his FC 25 video here</a></p>  
-  </section>
-  <!-- Brawl Stars Section -->
-  <section id="brawlstars-section">
-    <h2>Brawl Stars</h2>
-    <p>Enjoy fast-paced battles in Brawl Stars!</p>
-    <p>Support: Deadmark337 <a href="https://vt.tiktok.com/ZSrEomQma/" target="_blank">Watch his Brawl Stars video here</a></p>  
-  </section>
-  <!-- Team Up Section -->
-  <section id="teamup">
-    <h2>Team Up / Help</h2>
-    <p>If you want to collaborate or need any help, feel free to reach out to us!</p>
-    <p>Email: <a href="mailto:connect.Gamespotlight@gmail.com">connect.Gamespotlight@gmail.com</a></p>
-    <p>Discord: <a href="https://discord.gg/8RdUdcKd" target="_blank">Join our Discord Server</a></p>
-  </section>
-  <!-- Disclaimer Section -->
-  <section id="disclaimer">
-    <h2>Disclaimer</h2>
-    <p>This site shares gaming content for entertainment purposes only. We do not claim rights over uploaded content.</p>
-  </section>
-  <!-- Back to Top Button -->
-  <button id="backToTop" aria-label="Back to Top" title="Back to Top">&#8679;</button>
-  <!-- Footer -->
-  <footer>
-    <div class="social-icons">
-      <a href="https://discord.gg/8RdUdcKd" title="Discord" target="_blank" rel="noopener">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/discord.svg" alt="Discord" width="28" height="28" style="vertical-align:middle;filter:invert(1)">
-      </a>
-      <a href="mailto:connect.Gamespotlight@gmail.com" title="Email">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gmail.svg" alt="Email" width="28" height="28" style="vertical-align:middle;filter:invert(1)">
-      </a>
-      <a href="https://www.youtube.com/@Gamespotlight" title="YouTube" target="_blank" rel="noopener">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YouTube" width="28" height="28" style="vertical-align:middle;filter:invert(1)">
-      </a>
-    </div>
-    <div>
-      &copy; 2025 Gamespotlight &mdash; Share Your Best Gaming Moments!
-    </div>
-  </footer>
-  <!-- Smooth Scroll, Menu Toggle & Back to Top Script -->
-  <script>
-    // Fade-in for all sections
-    document.querySelectorAll('section').forEach((section, i) => {
-      section.style.animationDelay = (0.2 + i * 0.1) + "s";
-    });
-    // Smooth scroll for in-page links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        const target = document.querySelector(this.getAttribute('href'));
-        if(target) {
-          e.preventDefault();
-          target.scrollIntoView({behavior: 'smooth'});
-        }
-      });
-    });
-    // Back to top button logic
-    const backToTop = document.getElementById('backToTop');
-    window.addEventListener('scroll', function() {
-      if (window.scrollY > 300) {
-        backToTop.style.display = 'block';
-      } else {
-        backToTop.style.display = 'none';
-      }
-    });
-    backToTop.onclick = function() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
-    // Mobile menu toggle
-    const menuToggle = document.getElementById('menuToggle');
-    const menuContent = document.getElementById('menuContent');
-    menuToggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      menuContent.style.display = menuContent.style.display === 'block' ? 'none' : 'block';
-    });
-    // Hide menu when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!menuToggle.contains(e.target) && !menuContent.contains(e.target)) {
-        menuContent.style.display = 'none';
-      }
-    });
-    // Also allow keyboard navigation (esc to close)
-    document.addEventListener('keydown', (e) => {
-      if(e.key === "Escape"){
-        menuContent.style.display = 'none';
-      }
-    });
-  </script>
-  <!-- --- GameBot Chatbot --- -->
-  <div id="gamebot-container" style="display: flex;">
-    <div id="gamebot-header">
-      <span><span class="gamebot-avatar">🎮</span>GameBot</span>
-      <button id="gamebot-toggle" aria-label="Minimize/Expand">–</button>
-    </div>
-    <div id="gamebot-messages"></div>
-    <div id="gamebot-input-row">
-      <input type="text" id="gamebot-input" autocomplete="off" placeholder="Type your message...">
-      <button id="gamebot-send">Send</button>
-    </div>
-  </div>
-  <script>
-    // Gamelike Chatbot for Gamespotlight
-    const botData = {
-      intro: [
-        "Hey gamer! 🎮 Welcome to Gamespotlight. Ask me anything about the site, sharing clips, or supported games!",
-        "Pro tip: Try asking 'What is Gamespotlight?' or 'How can I share my clips?'"
-      ],
-      sections: {
-        about: "Gamespotlight is a place for gamers like you to share your best game clips and get noticed! If your clips go viral, you'll get the recognition you deserve. Share via Discord or email and join our gaming community!",
-        games: "We showcase awesome moments from games like Roblox, Minecraft, Fortnite, Rocket League, Apex Legends, FIFA FC 25, and Brawl Stars. Want to see clips? Click on any game above!",
-        share: "To share your epic gaming moments, post your clips in our Discord or email them to connect.Gamespotlight@gmail.com. We'll feature the best ones!",
-        teamup: "Want to collaborate or need help? Contact us via email or join our Discord server. Team up and make new friends!",
-        disclaimer: "All content is for entertainment only. We don't claim rights over uploaded clips.",
-        help: "Ask me about how to use the site, which games are featured, or how to share your clips. I'm here to help, gamer!",
-        viral: "If your clip goes viral, you'll see the results on our site and socials! Fame awaits!",
-        contact: "You can reach us at connect.Gamespotlight@gmail.com or on our Discord server.",
-        roblox: "Roblox lets you create and play millions of user-generated games. Check out the Roblox section for awesome clips!",
-        minecraft: "Minecraft is a blocky sandbox where you can build, explore, and survive. See the Minecraft section for epic moments!",
-        fortnite: "Fortnite is a battle royale and creative building game. Visit the Fortnite section for awesome plays!",
-        rocketleague: "Rocket League is soccer with rocket-powered cars! Check out the Rocket League section for highlights.",
-        apex: "Apex Legends is a fast-paced battle royale. Team up and win! Watch Apex highlights in the section above.",
-        fifa: "FIFA FC 25 brings football excitement to your screen. See the section for top plays!",
-        brawlstars: "Brawl Stars is action-packed and fun! Catch the best Brawl Stars moments in the section above."
-      }
-    };
-
-    function gamebotReply(input) {
-      const q = input.trim().toLowerCase();
-
-      // Greetings or general
-      if (/^(hi|hello|hey|yo|sup|what's up)/.test(q)) 
-        return "Hey! 👾 What can I help you with on Gamespotlight?";
-      if (q.includes("gamespotlight") || q.includes("this website") || q.includes("explain"))
-        return botData.sections.about;
-      if (q.includes("share") || q.includes("upload") || q.includes("submit"))
-        return botData.sections.share;
-      if (q.includes("viral"))
-        return botData.sections.viral;
-      if (q.includes("help"))
-        return botData.sections.help;
-      if (q.includes("team"))
-        return botData.sections.teamup;
-      if (q.includes("contact") || q.includes("email") || q.includes("discord"))
-        return botData.sections.contact;
-      if (q.includes("game") || q.includes("supported"))
-        return botData.sections.games;
-      if (q.includes("disclaimer") || q.includes("rights"))
-        return botData.sections.disclaimer;
-      if (q.includes("roblox"))
-        return botData.sections.roblox;
-      if (q.includes("minecraft"))
-        return botData.sections.minecraft;
-      if (q.includes("fortnite"))
-        return botData.sections.fortnite;
-      if (q.includes("rocket league"))
-        return botData.sections.rocketleague;
-      if (q.includes("apex"))
-        return botData.sections.apex;
-      if (q.includes("fifa"))
-        return botData.sections.fifa;
-      if (q.includes("brawl"))
-        return botData.sections.brawlstars;
-      if (q.includes("who are you") || q.includes("your name"))
-        return "I'm GameBot, your friendly gaming sidekick! Powered by pixel energy and a love for game highlights.";
-      if (q.includes("how are you"))
-        return "I'm feeling legendary! Ready to help you become a gaming star. 🌟";
-      // Easter eggs!
-      if (q.includes("konami"))
-        return "↑ ↑ ↓ ↓ ← → ← → B A! You found the secret code! 🎉";
-      // Fallback
-      return "Not sure about that, but you can ask me about the site, games, or how to get your clips featured!";
-    }
-
-    // Chatbot UI Logic
-    const container = document.getElementById('gamebot-container');
-    const messages = document.getElementById('gamebot-messages');
-    const input = document.getElementById('gamebot-input');
-    const send = document.getElementById('gamebot-send');
-    const header = document.getElementById('gamebot-header');
-    const toggle = document.getElementById('gamebot-toggle');
-    let minimized = false;
-
-    function addMsg(txt, from) {
-      const div = document.createElement('div');
-      div.className = 'gamebot-msg ' + (from === 'user' ? 'gamebot-msg-user' : 'gamebot-msg-bot');
-      div.innerHTML = (from === 'user' ? '<span class="gamebot-avatar">🧑‍💻</span>' : '<span class="gamebot-avatar">🎮</span>') + txt;
-      messages.appendChild(div);
-      messages.scrollTop = messages.scrollHeight;
-    }
-
-    function botSay(txt) {
-      setTimeout(() => addMsg(txt, 'bot'), 350);
-    }
-
-    send.onclick = function() {
-      const val = input.value.trim();
-      if (!val) return;
-      addMsg(val, 'user');
-      input.value = '';
-      botSay(gamebotReply(val));
-    };
-    input.addEventListener('keydown', function(e) {
-      if (e.key === "Enter") send.onclick();
-    });
-
-    // Minimize/Expand logic
-    toggle.onclick = function() {
-      minimized = !minimized;
-      messages.style.display = minimized ? 'none' : '';
-      document.getElementById('gamebot-input-row').style.display = minimized ? 'none' : 'flex';
-      toggle.textContent = minimized ? '+' : '–';
-      container.style.height = minimized ? 'auto' : '';
-    };
-    header.onclick = function(e) {
-      if (e.target !== toggle) toggle.onclick();
-    };
-
-    // Initial intro messages
-    botData.intro.forEach(botSay);
-  </script>
-</body>
-</html>
+    <p>This website was created to give gamers like you a chance to get noticed! You can share
