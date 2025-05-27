@@ -1,4 +1,3 @@
-<!-- Move the Google Translate widget to the top right -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +21,7 @@
   <script type="text/javascript">
     function googleTranslateElementInit() {
       new google.translate.TranslateElement({
-        pageLanguage: 'en', 
+        pageLanguage: 'en',
         includedLanguages: 'en,es,fr,de,it,pt,ru',
         layout: google.translate.TranslateElement.InlineLayout.SIMPLE
       }, 'google_translate_element');
@@ -209,12 +208,6 @@
         left: 0;
         top: 40px;
       }
-      /* Adjust Google Translate widget for small screens */
-      #google_translate_element {
-        right: 5px !important;
-        top: 5px !important;
-        transform: none !important;
-      }
     }
     .video-container {
       position: relative;
@@ -283,23 +276,11 @@
     .social-icons a:hover {
       color: #ff7e5f;
     }
-
-    /* Move Google Translate widget to the top right */
-    #google_translate_element {
-      position: fixed !important;
-      top: 10px !important;
-      right: 10px !important;
-      left: auto !important;
-      z-index: 9999 !important;
-      background: transparent !important;
-      box-shadow: none !important;
-      padding: 0 !important;
-    }
   </style>
 </head>
 <body>
-  <!-- Google Translate Widget (now top right) -->
-  <div id="google_translate_element"></div>
+  <!-- Google Translate Widget -->
+  <div id="google_translate_element" style="position: fixed; top: 10px; left: 10px; z-index: 999;"></div>
 
   <div class="menu" tabindex="0">
     <button id="menuToggle" aria-label="Open menu">&#9776; Menu</button>
@@ -349,7 +330,7 @@
   <section id="minecraft-section">
     <h2>Minecraft</h2>
     <p>Minecraft is a sandbox where you can explore, build, and survive in blocky worlds.</p>
-    <p>Support: Stealth🦍 <a href="https://vt.tiktok.com/ZSh145Avp/" target="_blank">Watch his Minecraft video here</a></p>  
+    <p>Support: Stealth🦍 <a href="https://vt.tiktok.com/ZSh145Avp/" target="_blank">Watch his Minecraft video here</a></p>
   </section>
 
   <!-- Fortnite Section -->
@@ -376,21 +357,21 @@
   <section id="apexlegends-section">
     <h2>Apex Legends</h2>
     <p>Team up and battle in Apex Legends!</p>
-    <p>Support: Frosti <a href="https://vt.tiktok.com/ZSro1xffj/" target="_blank">Watch his Apex video here</a></p>  
+    <p>Support: Frosti <a href="https://vt.tiktok.com/ZSro1xffj/" target="_blank">Watch his Apex video here</a></p>
   </section>
 
   <!-- FIFA FC 25 Section -->
   <section id="fifa25-section">
     <h2>FIFA FC 25</h2>
     <p>Experience the excitement of football with FIFA FC 25.</p>
-    <p>Support: A7snipzz <a href="https://vt.tiktok.com/ZSro1oJqc/" target="_blank">Watch his FC 25 video here</a></p>  
+    <p>Support: A7snipzz <a href="https://vt.tiktok.com/ZSro1oJqc/" target="_blank">Watch his FC 25 video here</a></p>
   </section>
 
   <!-- Brawl Stars Section -->
   <section id="brawlstars-section">
     <h2>Brawl Stars</h2>
     <p>Enjoy fast-paced battles in Brawl Stars!</p>
-    <p>Support: Deadmark337 <a href="https://vt.tiktok.com/ZSrEomQma/" target="_blank">Watch his Brawl Stars video here</a></p>  
+    <p>Support: Deadmark337 <a href="https://vt.tiktok.com/ZSrEomQma/" target="_blank">Watch his Brawl Stars video here</a></p>
   </section>
 
   <!-- Team Up Section -->
@@ -474,6 +455,16 @@
       if(e.key === "Escape"){
         menuContent.style.display = 'none';
       }
+    });
+  </script>
+
+  <!-- ChatGPT Widget: Place this at the end of the body -->
+  <script src="https://chat.openai.com/static/js/chatgpt-widget.js"></script>
+  <script>
+    window.ChatGPTWidget && window.ChatGPTWidget.init({
+      // You may customize the widget - see OpenAI docs for details
+      // For example, you can set your website's name or color here
+      // Example: title: "Gamespotlight AI Helper"
     });
   </script>
 </body>
